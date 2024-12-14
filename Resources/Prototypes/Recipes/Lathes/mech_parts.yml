@@ -174,7 +174,7 @@
 - type: latheRecipe
   id: RipleyHarness
   result: RipleyHarness
-  category: Ripley
+  category: Ripley # Goobstation
   completetime: 10
   materials:
     Steel: 1500
@@ -183,7 +183,7 @@
 - type: latheRecipe
   id: RipleyLArm
   result: RipleyLArm
-  category: Ripley
+  category: Ripley # Goobstation
   completetime: 10
   materials:
     Steel: 1000
@@ -192,7 +192,7 @@
 - type: latheRecipe
   id: RipleyLLeg
   result: RipleyLLeg
-  category: Ripley
+  category: Ripley # Goobstation
   completetime: 10
   materials:
     Steel: 1000
@@ -201,7 +201,7 @@
 - type: latheRecipe
   id: RipleyRLeg
   result: RipleyRLeg
-  category: Ripley
+  category: Ripley # Goobstation
   completetime: 10
   materials:
     Steel: 1000
@@ -210,35 +210,17 @@
 - type: latheRecipe
   id: RipleyRArm
   result: RipleyRArm
-  category: Ripley
+  category: Ripley # Goobstation
   completetime: 10
   materials:
     Steel: 1000
     Glass: 750
 
-# Ripley MK-II
-- type: latheRecipe
-  id: RipleyMKIIHarness
-  result: RipleyMKIIHarness
-  category: RipleyMKII
-  completetime: 10
-  materials:
-    Steel: 1500
-    Glass: 1200
-
-- type: latheRecipe
-  id: RipleyUpgradeKit
-  result: RipleyUpgradeKit
-  category: RipleyMKII
-  completetime: 10
-  materials:
-    Steel: 500
-
 # H.O.N.K.
 - type: latheRecipe
   id: HonkerHarness
   result: HonkerHarness
-  category: Honker
+  category: Honker # Goobstation
   completetime: 10
   materials:
     Steel: 3000
@@ -248,7 +230,7 @@
 - type: latheRecipe
   id: HonkerLArm
   result: HonkerLArm
-  category: Honker
+  category: Honker # Goobstation
   completetime: 10
   materials:
     Steel: 3000
@@ -258,7 +240,7 @@
 - type: latheRecipe
   id: HonkerLLeg
   result: HonkerLLeg
-  category: Honker
+  category: Honker # Goobstation
   completetime: 10
   materials:
     Steel: 3000
@@ -268,7 +250,7 @@
 - type: latheRecipe
   id: HonkerRLeg
   result: HonkerRLeg
-  category: Honker
+  category: Honker # Goobstation
   completetime: 10
   materials:
     Steel: 3000
@@ -278,7 +260,7 @@
 - type: latheRecipe
   id: HonkerRArm
   result: HonkerRArm
-  category: Honker
+  category: Honker # Goobstation
   completetime: 10
   materials:
     Steel: 3000
@@ -289,7 +271,7 @@
 - type: latheRecipe
   id: HamtrHarness
   result: HamtrHarness
-  category: Hamptr
+  category: Hamptr # Goobstation
   completetime: 10
   materials:
     Steel: 1200
@@ -298,7 +280,7 @@
 - type: latheRecipe
   id: HamtrLArm
   result: HamtrLArm
-  category: Hamptr
+  category: Hamptr # Goobstation
   completetime: 10
   materials:
     Steel: 800
@@ -307,7 +289,7 @@
 - type: latheRecipe
   id: HamtrLLeg
   result: HamtrLLeg
-  category: Hamptr
+  category: Hamptr # Goobstation
   completetime: 10
   materials:
     Steel: 800
@@ -316,7 +298,7 @@
 - type: latheRecipe
   id: HamtrRLeg
   result: HamtrRLeg
-  category: Hamptr
+  category: Hamptr # Goobstation
   completetime: 10
   materials:
     Steel: 800
@@ -325,7 +307,7 @@
 - type: latheRecipe
   id: HamtrRArm
   result: HamtrRArm
-  category: Hamptr
+  category: Hamptr # Goobstation
   completetime: 10
   materials:
     Steel: 800
@@ -375,7 +357,7 @@
 - type: latheRecipe
   id: MechEquipmentGrabberSmall
   result: MechEquipmentGrabberSmall
-  category: MechEquipment
+  category: MechEquipment # Goobstation
   completetime: 10
   materials:
     Steel: 400
@@ -389,40 +371,3 @@
   materials:
     Steel: 500
     Bananium: 200
-
-- type: latheRecipe
-  id: MechEquipmentHonkerBananaMortar
-  result: WeaponMechSpecialBananaMortar
-  category: MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1150
-    Bananium: 800
-
-- type: latheRecipe
-  id: MechEquipmentHonkerMousetrapMortar
-  result: WeaponMechSpecialMousetrapMortar
-  category: MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1200
-    Bananium: 300
-
-# Misc
-- type: latheRecipe
-  id: MechAirTank
-  result: MechAirTank
-  category: MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1000
-    Glass: 150
-
-- type: latheRecipe
-  id: MechThruster
-  result: MechThruster
-  category: MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1000
-    Glass: 150

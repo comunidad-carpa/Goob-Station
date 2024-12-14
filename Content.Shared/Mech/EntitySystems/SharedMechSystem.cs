@@ -24,6 +24,11 @@ using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
+// Goobstation Change
+using Content.Shared.Emag.Components;
+using Content.Shared.Emag.Systems;
+using Content.Shared.Weapons.Ranged.Events;
+
 namespace Content.Shared.Mech.EntitySystems;
 
 /// <summary>
@@ -136,6 +141,7 @@ public abstract class SharedMechSystem : EntitySystem
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
+        _actions.AddAction(pilot, ref component.ToggleActionEntity, component.ToggleAction, mech); //Goobstation Mech Lights toggle action
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
@@ -453,7 +459,7 @@ public abstract class SharedMechSystem : EntitySystem
         args.CanDrop |= !component.Broken && CanInsert(uid, args.Dragged, component);
     }
 
-    private void OnEmagged(EntityUid uid, MechComponent component, ref GotEmaggedEvent args)
+    private void OnEmagged(EntityUid uid, MechComponent component, ref GotEmaggedEvent args) // Goobstation
     {
         if (!component.BreakOnEmag)
             return;

@@ -11,7 +11,7 @@ using Content.Shared.Examine;
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
-using Content.Shared.Mech.Components;
+using Content.Shared.Mech.Components; // Goobstation
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag;
@@ -129,13 +129,15 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         var user = args.SenderSession.AttachedEntity;
 
-        if (user == null || !_combatMode.IsInCombatMode(user))
+        if (user == null ||
+            !_combatMode.IsInCombatMode(user))
             return;
 
         if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
             user = mechPilot.Mech;
 
-        if (!TryGetGun(user.Value, out var ent, out var gun))
+        if (!TryGetGun(user.Value, out var ent, out var gun) ||
+            HasComp<ItemComponent>(user))
             return;
 
         if (ent != GetEntity(msg.Gun))
@@ -552,7 +554,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         Physics.ApplyLinearImpulse(user, -impulseVector, body: userPhysics);
     }
 
-    public void RefreshModifiers(Entity<GunComponent?> gun)
+    public void RefreshModifiers(Entity<GunComponent?> gun, EntityUid? User = null) // GoobStation change - User for NoWieldNeeded
     {
         if (!Resolve(gun, ref gun.Comp))
             return;
@@ -568,7 +570,8 @@ public abstract partial class SharedGunSystem : EntitySystem
             comp.MinAngle,
             comp.ShotsPerBurst,
             comp.FireRate,
-            comp.ProjectileSpeed
+            comp.ProjectileSpeed,
+            User // GoobStation change - User for NoWieldNeeded
         );
 
         RaiseLocalEvent(gun, ref ev);

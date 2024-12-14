@@ -56,6 +56,9 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    - BZ
+    - Healium
+    - Nitrium
     #- Helium3 TODO: fusion
     # remove everything except oxygen to maintain oxygen ratio
     overflowGases:
@@ -67,6 +70,9 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    - BZ
+    - Healium
+    - Nitrium
     #- Helium3 TODO: fusion
   - type: AirIntake
   # for intake and filter to work
@@ -123,9 +129,10 @@
       mech-pilot-slot: !type:ContainerSlot
       mech-equipment-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
+      paper_label: !type:ContainerSlot # Goobstation
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: LightArmor
+    damageContainer: Silicon # Goobstation
+    damageModifierSet: LightArmor # Goobstation
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/mechmove03.ogg
@@ -136,7 +143,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 1000 # Goobstation
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -145,11 +152,46 @@
         node: start
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  # Goobstation Change Start
+  - type: UnpoweredFlashlight # Goobstation mech lights for all mechs its unpowered to match hardsuits
+  - type: PointLight
+    enabled: false
+    softness: 5
+    autoRot: true
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 7
+    energy: 3
+    netsync: false
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: bounty }
+          CaptainsPaper: { state: captains_paper }
+          Invoice: { state: invoice }
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: Attach Label
+      ejectVerbText: Remove Label
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
+  - type: StaticPrice
+    price: 450
+  # Goobstation Change End
 
 # Ripley MK-I
 - type: entity
   id: MechRipley
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ] # Goobstation
   name: Ripley APLU
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:
@@ -191,105 +233,8 @@
       mech-battery-slot:
       - PowerCellHigh
 
-# Ripley MK-II
 - type: entity
-  id: MechRipley2
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
-  name: Ripley APLU MK-II
-  description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
-    layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
-      state: ripleymkii
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
-  - type: Mech
-    baseState: ripleymkii
-    openState: ripleymkii-open
-    brokenState: ripleymkii-broken
-    mechToPilotDamageMultiplier: 0.4
-    airtight: true
-    pilotWhitelist:
-      components:
-        - HumanoidAppearance
-  - type: MeleeWeapon
-    hidden: true
-    attackRate: 1
-    damage:
-      types:
-        Blunt: 20
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
-  - type: Damageable
-    damageModifierSet: MediumArmorNT
-
-- type: entity
-  id: MechRipley2Battery
-  parent: MechRipley2
-  suffix: Battery
-  components:
-  - type: ContainerFill
-    containers:
-      mech-battery-slot:
-      - PowerCellHigh
-
-# Clarke
-- type: entity
-  id: MechClarke
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
-  name: Clarke
-  description: A fast-moving mech for space travel. It has built-in trusts.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
-    layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
-      state: clarke
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
-  - type: Mech
-    baseState: clarke
-    openState: clarke-open
-    brokenState: clarke-broken
-    mechToPilotDamageMultiplier: 0.5
-    airtight: true
-    pilotWhitelist:
-      components:
-        - HumanoidAppearance
-  - type: MeleeWeapon
-    hidden: true
-    attackRate: 1
-    damage:
-      types:
-        Blunt: 26
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.5
-  - type: CanMoveInAir
-  - type: MovementAlwaysTouching
-
-- type: entity
-  id: MechClarkeBattery
-  parent: MechClarke
-  suffix: Battery
-  components:
-  - type: ContainerFill
-    containers:
-      mech-battery-slot:
-      - PowerCellHigh
-
-# H.O.N.K.
-- type: entity
-  parent: [ BaseMech, SpecialMech, BaseCivilianContraband ]
+  parent: [ BaseMech, SpecialMech, BaseCivilianContraband ] # Goobstation
   id: MechHonker
   name: H.O.N.K.
   description: "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
@@ -311,7 +256,7 @@
     openState: honker-open
     brokenState: honker-broken
     mechToPilotDamageMultiplier: 0.5
-    airtight: true # Space Honks is real.
+    airtight: true # Goobstation - Space Honk is real.
     pilotWhitelist:
       components:
       - HumanoidAppearance
@@ -327,19 +272,7 @@
       - PowerCellHigh
 
 - type: entity
-  parent: MechHonkerBattery
-  id: MechHonkerFilled
-  suffix: Battery, Filled
-  components:
-  - type: Mech
-    startingEquipment:
-      - WeaponMechSpecialBananaMortar
-      - WeaponMechSpecialMousetrapMortar
-      - MechEquipmentHorn
-
-# HAMTR
-- type: entity
-  parent: [ BaseMech, SmallMech ]
+  parent: [ BaseMech, SmallMech ] # Goobstation
   id: MechHamtr
   name: HAMTR
   description: "An experimental mech which uses a brain–computer interface to connect directly to a hamsters brain."
